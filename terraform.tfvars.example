@@ -1,0 +1,55 @@
+# =============================================================================
+# Fintech Starter Kit - PCI DSS v4.0 + SOC 2
+#
+# Copy this file to terraform.tfvars and fill in the required values.
+# Lines marked CHANGEME must be updated before running terraform plan.
+# =============================================================================
+
+# Required - change these
+project_name       = "starter-kit-fintech"                       # CHANGEME: your project name (lowercase, hyphens ok)
+environment        = "dev"                                       # dev, staging, or prod
+aws_region         = "us-east-1"                                 # CHANGEME: your preferred AWS region
+aws_profile        = "demo"                                      # CHANGEME: your AWS CLI profile
+availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"] # CHANGEME: must match aws_region
+domain_name        = "app.example.com"                           # CHANGEME: your domain for TLS certificates
+route53_zone_id    = "Z0123456789ABCDEF"                         # CHANGEME: your Route 53 hosted zone ID
+
+# S3 cross-region replication (PCI DSS 10.3 - log durability)
+s3_replication_role_arn               = "arn:aws:iam::123456789012:role/s3-replication"  # CHANGEME
+s3_replication_destination_bucket_arn = "arn:aws:s3:::myapp-dr-us-west-2"               # CHANGEME
+
+# Network - defaults work for most setups
+# vpc_cidr              = "10.0.0.0/16"
+# public_subnet_cidrs   = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+# private_subnet_cidrs  = ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
+# database_subnet_cidrs = ["10.0.21.0/24", "10.0.22.0/24", "10.0.23.0/24"]
+
+# EKS - adjust for your workload
+# eks_cluster_version     = "1.31"
+# eks_node_instance_types = ["t3.medium"]
+# eks_node_min_size       = 2
+# eks_node_max_size       = 6
+# eks_node_desired_size   = 2
+
+# Database - Aurora PostgreSQL
+# aurora_engine_version  = "16.4"
+# aurora_instance_class  = "db.r6g.large"
+# aurora_master_username = "app_admin"
+
+# Cache - Redis
+# redis_engine_version = "7.1"
+# redis_node_type      = "cache.t4g.micro"
+
+# Messaging - MSK / Kafka
+# msk_kafka_version        = "3.6.0"
+# msk_broker_instance_type = "kafka.t3.small"
+
+# Compute - Lambda and EC2
+# lambda_runtime    = "nodejs20.x"
+# ec2_instance_type = "t3.medium"
+
+# Search - OpenSearch
+# opensearch_instance_type = "t3.small.search"
+
+# Observability
+# log_retention_days = 365
