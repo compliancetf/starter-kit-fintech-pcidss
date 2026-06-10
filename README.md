@@ -1,6 +1,6 @@
 # Fintech Starter Kit - PCI DSS v4.0 + SOC 2
 
-Terraform configuration that deploys PCI DSS v4.0-compliant AWS infrastructure for fintech companies. Modules are sourced from the [compliance.tf](https://compliance.tf) registry, which validates PCI DSS and SOC 2 controls at `terraform plan` time — non-compliant configurations fail before they can be applied.
+Terraform configuration that deploys PCI DSS v4.0-compliant AWS infrastructure for fintech companies. Modules are sourced from the [compliance.tf registry](https://pcidss.compliance.tf), which validates PCI DSS and SOC 2 controls at `terraform plan` time — non-compliant configurations fail before they can be applied.
 
 ## Architecture
 
@@ -44,6 +44,8 @@ terraform apply
 `terraform plan` fails if any required PCI DSS controls are not satisfied — the error message will name the specific control and the module that violated it. A clean plan with the default configuration produces about 130 resources.
 
 ## Module Inventory
+
+Every source below is a browsable page on the registry, with versions, inputs, and outputs - browse all modules at [pcidss.compliance.tf](https://pcidss.compliance.tf).
 
 | Module | Source | Version | Purpose | Key PCI DSS Requirements |
 |--------|--------|---------|---------|--------------------------|
