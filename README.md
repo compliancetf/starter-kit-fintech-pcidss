@@ -63,8 +63,8 @@ Every source below is a browsable page on the registry, with versions, inputs, a
 | `rds_aurora` | `pcidss.compliance.tf/terraform-aws-modules/rds-aurora/aws` | `~> 10.0` | Aurora PostgreSQL (encrypted, IAM auth, Multi-AZ) | 3.5.1 (encryption at rest), 10.2 (audit logs) |
 | `dynamodb` | `pcidss.compliance.tf/terraform-aws-modules/dynamodb-table/aws` | `~> 5.0` | Key-value store (KMS encryption, point-in-time recovery) | 3.5.1 (encryption at rest) |
 | `elasticache` | `pcidss.compliance.tf/terraform-aws-modules/elasticache/aws` | `~> 1.0` | Redis (encrypted at rest and in transit) | 4.2.1 (TLS in transit) |
-| `s3_bucket_data` | `pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws` | `~> 5.0` | CDE data storage (KMS, versioning, replication) | 3.5.1 (encryption at rest), 3.5 (no public access) |
-| `s3_bucket_logs` | `pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws` | `~> 5.0` | Audit log storage (versioning, cross-region replication, 365-day lifecycle) | 10.3 (log protection), 10.5.1 (log retention) |
+| `s3_bucket_data` | `https://pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws?version=5.12.0&disable=s3_bucket_mfa_delete_enabled` | `5.12.0` (pinned via URL) | CDE data storage (KMS, versioning, replication) | 3.5.1 (encryption at rest), 3.5 (no public access) |
+| `s3_bucket_logs` | `https://pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws?version=5.12.0&disable=s3_bucket_mfa_delete_enabled` | `5.12.0` (pinned via URL) | Audit log storage (versioning, cross-region replication, 365-day lifecycle) | 10.3 (log protection), 10.5.1 (log retention) |
 | `sqs` | `pcidss.compliance.tf/terraform-aws-modules/sqs/aws` | `~> 5.0` | Message queue with dead-letter queue | 3.5.1 (SSE encryption) |
 | `opensearch` | `pcidss.compliance.tf/terraform-aws-modules/opensearch/aws` | `~> 2.0` | VPC-only search (KMS, HTTPS, fine-grained access, audit logs) | 10.2 (audit logs), 10.3 (log protection) |
 | `cloudwatch` | `pcidss.compliance.tf/terraform-aws-modules/cloudwatch/aws//modules/log-group` | `~> 5.0` | Application log group (365-day retention) | 10.2 (audit logs), 10.5.1 (log retention) |
