@@ -1,5 +1,5 @@
 # =============================================================================
-# Fintech Starter Kit - PCI DSS v4.0 + SOC 2
+# Fintech Starter Kit - PCI DSS v4.0
 #
 # Copy this file to terraform.tfvars and fill in the required values.
 # Lines marked CHANGEME must be updated before running terraform plan.
