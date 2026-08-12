@@ -1,10 +1,10 @@
 ################################################################################
-# PCI DSS v4.0 + SOC 2 Compliance Starter Kit - Fintech
+# PCI DSS v4.0 Compliance Starter Kit - Fintech
 #
 # Pre-composed infrastructure for fintech companies (payment platforms,
 # neobanks, BNPL) preparing for PCI DSS v4.0 certification.
 # All modules source from the compliance.tf registry and enforce PCI DSS
-# and SOC 2 controls at terraform plan time.
+# controls at terraform plan time.
 #
 # PCI DSS 4.0 requirements enforced automatically:
 #   2.2   - System components configured to reduce vulnerabilities
@@ -525,9 +525,9 @@ module "ec2_instance" {
 
   name = "${local.name}-worker"
 
-  instance_type               = var.ec2_instance_type
-  ami                         = data.aws_ami.amazon_linux_2.id
-  subnet_id                   = module.vpc.private_subnets[0]
+  instance_type = var.ec2_instance_type
+  ami           = data.aws_ami.amazon_linux_2.id
+  subnet_id     = module.vpc.private_subnets[0]
   # PCI DSS 2.2: no public IP for CDE components
   associate_public_ip_address = false
 
@@ -649,12 +649,12 @@ module "elasticache" {
 ################################################################################
 
 module "s3_bucket_data" {
-  source  = "pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws"
-  version = "~> 5.0"
+  source = "https://pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws?version=5.12.0&disable=s3_bucket_mfa_delete_enabled"
 
   bucket = "${local.name}-data-${data.aws_caller_identity.current.account_id}"
 
-  versioning = { enabled = "Enabled", mfa_delete = "Enabled" }
+  # MFA Delete must be enabled manually by the root account (see README)
+  versioning = { enabled = "Enabled" }
 
   logging = {
     target_bucket = module.s3_bucket_logs.s3_bucket_id
@@ -663,8 +663,8 @@ module "s3_bucket_data" {
 
   lifecycle_rule = [
     {
-      id     = "transition-to-ia"
-      status = "Enabled"
+      id         = "transition-to-ia"
+      status     = "Enabled"
       transition = [{ days = 90, storage_class = "STANDARD_IA" }]
     }
   ]
@@ -691,12 +691,12 @@ module "s3_bucket_data" {
 ################################################################################
 
 module "s3_bucket_logs" {
-  source  = "pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws"
-  version = "~> 5.0"
+  source = "https://pcidss.compliance.tf/terraform-aws-modules/s3-bucket/aws?version=5.12.0&disable=s3_bucket_mfa_delete_enabled"
 
   bucket = "${local.name}-logs-${data.aws_caller_identity.current.account_id}"
 
-  versioning = { enabled = "Enabled", mfa_delete = "Enabled" }
+  # MFA Delete must be enabled manually by the root account (see README)
+  versioning = { enabled = "Enabled" }
 
   replication_configuration = {
     role = var.s3_replication_role_arn
